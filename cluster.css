@@ -6,18 +6,20 @@ input:focus, input:hover {
     outline: none;
 }
 
-.chat-submit {
-    background-color: #50d13f;
-    border: 2px solid #50d13f;
-    padding: 7px 15px;
-    color: #50d13f;
-    border-radius: 2px;
-    background-color: #fff;
-    padding: 15px 22px;
-}
-
 .error {
     color: #ef5555;
+}
+
+.btn {
+    background-color: white;
+    border: 2px solid #50d13f;
+    color: #50d13f;
+    padding: 7px 15px;
+    border-radius: 2px;
+}
+
+.btn-primary {
+    padding: 15px 22px;
 }
 
 .container {
@@ -27,21 +29,14 @@ input:focus, input:hover {
 }
 
 header {
-    background-color: #f9f9f9;
     border: 1px solid #eee;
-    padding: 40px 40px 20px 40px;
-    display: inline-block;
+    padding: 40px;
 }
 
 input[type="text"] {
-    border: 2px solid #d3d3d3;
+    border: 1px solid #d3d3d3;
     background-color: #fff;
     padding: 15px 18px;
     border-radius: 2px;
-    margin: 0;
-}
-
-.new-chat .chat-input {
     min-width: 300px;
-    margin: 0;
 }

@@ -12,11 +12,12 @@
 
         {{#if currentUser}}
         <form class="new-chat">
-            <input class="chat-input" type="text" name="text" placeholder="Type a name for the chat" />
-            <button type="submit" class="chat-submit">Create Chat</button>
-          <p class="error">
-              That name already exists, try something else.
-          </p>
+            <input type="text" name="text" placeholder="Type a name for the chat" />
+            <button type="submit" class="btn btn-primary">Create Chat</button>
+
+            <p class="error">
+                That name already exists, try something else.
+            </p>
         </form>
         {{else}}
         <p>Please sign in to start the pedochat!</p>
