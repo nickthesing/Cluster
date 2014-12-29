@@ -8,3 +8,6 @@ meteor-platform
 autopublish
 insecure
 mrt:normalize.css
+accounts-ui
+accounts-password
+bootstrap

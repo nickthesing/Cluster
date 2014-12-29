@@ -1,13 +1,23 @@
 <!-- cluster.html -->
 <head>
-  <title>Cluster - A Meteor Chat App</title>
+  <title>Cluster - A Meteor Chat</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
   <div class="container">
     <header>
-        <span>hallo?</span>
         {{> loginButtons}}
+
+        {{#if currentUser}}
+        <form class="new-chat">
+            <input class="chat-input" type="text" name="text" placeholder="Type a name for the chat" />
+            <button type="submit" class="chat-submit">Create Chat</button>
+        </form>
+        {{else}}
+        <p>Please sign in to start the pedochat!</p>
+        {{/if}}
     </header>
   </div>
 </body>
