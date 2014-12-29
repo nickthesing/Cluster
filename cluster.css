@@ -8,11 +8,16 @@ input:focus, input:hover {
 
 .chat-submit {
     background-color: #50d13f;
+    border: 2px solid #50d13f;
     padding: 7px 15px;
-    color: #fff;
-    border: none;
+    color: #50d13f;
     border-radius: 2px;
+    background-color: #fff;
     padding: 15px 22px;
+}
+
+.error {
+    color: #ef5555;
 }
 
 .container {
@@ -22,12 +27,14 @@ input:focus, input:hover {
 }
 
 header {
+    background-color: #f9f9f9;
     border: 1px solid #eee;
-    padding: 40px;
+    padding: 40px 40px 20px 40px;
+    display: inline-block;
 }
 
 input[type="text"] {
-    border: 1px solid #d3d3d3;
+    border: 2px solid #d3d3d3;
     background-color: #fff;
     padding: 15px 18px;
     border-radius: 2px;
