@@ -14,9 +14,11 @@
         <form class="new-chat js-create-chat">
           <input type="text" name="text" placeholder="Type a name for the chat" />
           <button type="submit" class="btn btn-primary">Create Chat</button>
-          <p class="error">
-              That name already exists, try something else.
-          </p>
+            {{#if hasError}}
+              <p class="error">
+                  That name already exists, try something else.
+              </p>
+            {{/if}}
         </form>
         {{else}}
         <p>Please sign in to start the cluster chat!</p>

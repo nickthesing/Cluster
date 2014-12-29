@@ -2,7 +2,7 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-input:focus, input:hover {
+input:focus, input:hover, button:focus {
     outline: none;
 }
 
