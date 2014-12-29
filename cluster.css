@@ -1,0 +1,38 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+input:focus, input:hover {
+    outline: none;
+}
+
+.btn {
+    background-color: #50d13f;
+    padding: 7px 15px;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+}
+
+.btn-primary {
+    padding: 15px 22px;
+}
+
+.container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 60px 0 0 0;
+}
+
+header {
+    border: 1px solid #eee;
+    padding: 40px;
+}
+
+input[type="text"] {
+    border: 1px solid #d3d3d3;
+    background-color: #fff;
+    padding: 15px 18px;
+    border-radius: 2px;
+    min-width: 300px;
+}
