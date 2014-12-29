@@ -1,12 +1,19 @@
 <!-- cluster.html -->
 <head>
-  <title>Cluster - A Meteor Chat App</title>
+  <title>Cluster - A Meteor Chat</title>
 </head>
 
 <body>
   <div class="container">
     <header>
 
+        {{#if currentUser}}
+        <form class="new-chat">
+          <input type="text" name="text" placeholder="Type a name for the chat" />
+          <button type="submit">Create Chat</button>
+        </form>
+        {{/if}}
+        
     </header>
 
   </div>
