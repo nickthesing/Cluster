@@ -6,15 +6,13 @@ input:focus, input:hover {
     outline: none;
 }
 
-.btn {
+.chat-submit {
+    background-color: #50d13f;
     border: 2px solid #50d13f;
     padding: 7px 15px;
     color: #50d13f;
     border-radius: 2px;
     background-color: #fff;
-}
-
-.btn-primary {
     padding: 15px 22px;
 }
 
@@ -40,10 +38,10 @@ input[type="text"] {
     background-color: #fff;
     padding: 15px 18px;
     border-radius: 2px;
-    min-width: 300px;
-    margin: 0 0 20px 0;
+    margin: 0;
 }
 
-.new-chat p {
+.new-chat .chat-input {
+    min-width: 300px;
     margin: 0;
 }

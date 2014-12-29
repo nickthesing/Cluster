@@ -8,8 +8,9 @@
 <body>
   <div class="container">
     <header>
+        {{> loginButtons}}
 
-        <!-- {{#if currentUser}} -->
+        {{#if currentUser}}
         <form class="new-chat js-create-chat">
           <input type="text" name="text" placeholder="Type a name for the chat" />
           <button type="submit" class="btn btn-primary">Create Chat</button>
@@ -17,9 +18,9 @@
               That name already exists, try something else.
           </p>
         </form>
-        <!-- {{/if}} -->
-
+        {{else}}
+        <p>Please sign in to start the cluster chat!</p>
+        {{/if}}
     </header>
-
   </div>
 </body>

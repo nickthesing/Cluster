@@ -1,5 +1,10 @@
+Cluster = new Mongo.Collection("cluster");
+
 if ( Meteor.isClient ) {
 
+    Accounts.ui.config({
+        passwordSignupFields: "USERNAME_ONLY"
+    });
 
     // Body events
     Template.body.events({
@@ -29,4 +34,4 @@ Meteor.methods({
 
         console.log(name);
     }
-})
+});
