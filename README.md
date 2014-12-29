@@ -5,7 +5,7 @@ A Meteor Chat Application
 
 Authors: Nick Thesing & Matthijs Molhoek
 
-<h4> features: </h4>
+<h4> Features </h4>
 
 - Chat functionality (send/read)
 - Filters (Caps, links, urls)
