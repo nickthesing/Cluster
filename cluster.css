@@ -6,6 +6,10 @@ input:focus, input:hover, button:focus {
     outline: none;
 }
 
+form {
+    display: inline-block;
+}
+
 .error {
     color: #ef5555;
 }
@@ -22,6 +26,10 @@ input:focus, input:hover, button:focus {
     padding: 15px 22px;
 }
 
+.btn-primary:hover {
+    background-color: #f9f9f9;
+}
+
 .container {
     width: 600px;
     margin: 0 auto;
@@ -31,10 +39,11 @@ input:focus, input:hover, button:focus {
 header {
     border: 1px solid #eee;
     padding: 40px;
+    display: inline-block;
 }
 
 input[type="text"] {
-    border: 1px solid #d3d3d3;
+    border: 2px solid #d3d3d3;
     background-color: #fff;
     padding: 15px 18px;
     border-radius: 2px;

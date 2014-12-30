@@ -3,12 +3,35 @@ Chat    = new Mongo.Collection('chat');
 
 if ( Meteor.isClient ) {
 
+    Router.route('/', function () {
+      // render the Home template with a custom data context
+      this.render('home', {});
+    });
+
+    Router.route('/chat', {
+        name: 'chat',
+        path: '/chat/:_name',
+
+        data: function () {
+            return Cluster.findOne({name: this.params._name});
+        },
+
+        action: function () {
+            this.render();
+        }
+    });
+
+    Router.plugin('dataNotFound', {notFoundTemplate: '/home'});
+    Router.map(function () {
+        this.route('notFound', { path: '*' });
+    });
+
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
     });
 
     // Body events
-    Template.body.events({
+    Template.home.events({
         "submit .js-create-chat": function(event) {
             var name = event.target.text.value;
 
@@ -28,7 +51,7 @@ if ( Meteor.isClient ) {
         }
     });
 
-    Template.body.helpers({
+    Template.home.helpers({
         hasError: function() {
             return Session.get('hasError');
         }
