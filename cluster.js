@@ -14,27 +14,31 @@ Router.route('/chat', {
 
 Router.route('/chat/:_name', {
     controller: 'ChatController',
-    action: 'show'
-})
+    action: 'chat'
+});
 
 if ( Meteor.isClient ) {
+    ChatController = RouteController.extend({
+        layoutTemplate: 'chatLayout',
+        loadingTemplate: 'chatLoading',
+        waitOn: function () {
+            return Meteor.subscribe('cluster');
+        },
 
-  ChatController = RouteController.extend({
-    layoutTemplate: 'chatLayout',
+        data: function() {
+            return Cluster.findOne({name: this.params._name});
+        },
 
-    data: function() {
-        var d = Cluster.findOne({name: this.params._name});
-    },
+        chat: function () {
+            if (this.ready()) {
+                this.render('chat');
+            }
+        },
 
-    show: function () {
-      this.render('chat');
-    },
-
-    notSpecified: function () {
-      this.render('chatNotSpecified');
-    }
-  });
-
+        notSpecified: function () {
+          this.render('chatNotSpecified');
+        }
+    });
 
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
@@ -66,6 +70,12 @@ if ( Meteor.isClient ) {
             return Session.get('hasError');
         }
     });
+}
+
+if (Meteor.isServer) {
+    Meteor.publish("cluster", function () {
+        return Cluster.find({});
+  });
 }
 
 // Meteor Methods

@@ -1,33 +1,28 @@
-
 <template name="chatLayout">
     <div class="container">
         <div class="cluster-chat">
-
-    {{> yield}}
-
-    
-
+            {{> yield}}
         </div>
     </div>
-
 </template>
 
 
 <template name="chat">
+    {{#if name}}
+        <h1>Cluster chat: {{name}}</h1>
+    {{else}}
+        {{> chatNotFound}}
+    {{/if}}
+</template>
 
-            <h1>Cluster chat: {{name}}</h1>
-
-
+<template name="chatLoading">
+    <h1>Loading chat...</h1>
 </template>
 
 <template name="chatNotFound">
-
-            <h1>nothing found</h1>
-
+    <h1>Oops. Chat not found</h1>
 </template>
 
 <template name="chatNotSpecified">
-
-            <h1>No name specified</h1>
-
+    <h1>No name specified</h1>
 </template>
