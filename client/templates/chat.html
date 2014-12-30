@@ -6,14 +6,6 @@
     </div>
 </template>
 
-<template name="chatLoaded">
-    {{#if name}}
-        {{> chat}}
-    {{else}}
-        {{> chatNotFound}}
-    {{/if}}
-</template>
-
 <template name="chatLoading">
     <h1>Loading chat...</h1>
 </template>
@@ -24,6 +16,14 @@
 
 <template name="chatNotSpecified">
     <h1>No name specified</h1>
+</template>
+
+<template name="chatLoaded">
+    {{#if name}}
+        {{> chat}}
+    {{else}}
+        {{> chatNotFound}}
+    {{/if}}
 </template>
 
 <template name="chat">
