@@ -100,7 +100,7 @@ input[type="text"] {
 
 .cluster-chat li {
     border-bottom: 1px solid #eee;
-    padding: 5px 0 5px 20px;
+    padding: 7px 0 7px 20px;
     position: relative;
     line-height: 20px;
 }
@@ -116,14 +116,21 @@ input[type="text"] {
 
 .cluster-chat p {
     margin: 0;
+    font-size: 14px;
+    color: #626262;
+}
+
+.cluster-chat p .line-author {
+    color: #393939;
+}
+
+.cluster-chat p .line-date {
+    float: right;
+    font-size: 12px;
 }
 
 .cluster-chat p.first-line {
     color: #aaa;
-}
-
-.new-chatline {
-
 }
 
 .new-chatline input[type="text"] {

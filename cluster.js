@@ -15,7 +15,7 @@ Router.route('/chat', {
 Router.route('/chat/:_name', {
     controller: 'ChatController',
     action: 'show'
-})
+});
 
 if ( Meteor.isClient ) {
 
@@ -87,16 +87,36 @@ if ( Meteor.isClient ) {
         }
     });
 
+    callFn = function(fn, data) {
+        if ( fn === 'clear' ) {
+            console.log('clear');
+        //    Meteor.call('clearChat', data);
+        }
+    },
+
     Template.chat.events({
         "submit .js-create-line": function(event) {
+            event.preventDefault();
+
+            text = event.target.text.value,
+            fns = ['clear'];
+
             var opt = {
-                text: event.target.text.value,
+                text: text,
                 name: Session.get('chatName')
             }
 
-            Meteor.call('addLine', opt);
+            if ( text.indexOf('!') === 0 && fns.indexOf(text.slice(1)) > -1 ) {
 
-            return false;
+                callFn(opt);
+
+                event.target.text.value = '';
+                event.preventDefault();
+            }
+
+            Meteor.call('addLine', opt);
+            event.target.text.value = '';
+
         }
     });
 }
@@ -130,6 +150,12 @@ Meteor.methods({
             username: Meteor.user().username,
             start: false,
             text: opt.text
+        });
+    },
+    "clearChat": function(chatName) {
+        Cluster.remove({
+            name: chatName,
+            start: false
         });
     }
 });
