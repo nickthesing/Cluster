@@ -7,13 +7,16 @@ if ( Meteor.isClient ) {
         passwordSignupFields: "USERNAME_ONLY"
     });
 
-    Router.route('/', function () {
-      this.render('home', {});
+    Router.configure({
+      layoutTemplate: 'home',
+
+      template: 'home'
     });
 
     Router.route('/chat', {
         name: 'chat',
         path: '/chat/:_name',
+        layoutTemplate: 'chat',
 
         data: function () {
             return Cluster.findOne({name: this.params._name});
