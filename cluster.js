@@ -21,7 +21,7 @@ if ( Meteor.isClient ) {
         }
     });
 
-    Router.plugin('dataNotFound', {notFoundTemplate: '/home'});
+    Router.plugin('dataNotFound', {notFoundTemplate: '/chatNotFound'});
     Router.map(function () {
         this.route('notFound', { path: '*' });
     });
