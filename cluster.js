@@ -88,9 +88,8 @@ if ( Meteor.isClient ) {
     });
 
     callFn = function(fn, data) {
-        if ( fn === 'clear' ) {
-            console.log('clear');
-        //    Meteor.call('clearChat', data);
+        if ( fn.slice(1) === 'clear' ) {
+            Meteor.call('clearChat', data);
         }
     },
 
@@ -108,15 +107,14 @@ if ( Meteor.isClient ) {
 
             if ( text.indexOf('!') === 0 && fns.indexOf(text.slice(1)) > -1 ) {
 
-                callFn(opt);
+                callFn(text,opt);
 
                 event.target.text.value = '';
-                event.preventDefault();
+                return;
             }
 
             Meteor.call('addLine', opt);
             event.target.text.value = '';
-
         }
     });
 }
@@ -152,9 +150,9 @@ Meteor.methods({
             text: opt.text
         });
     },
-    "clearChat": function(chatName) {
+    "clearChat": function(data) {
         Cluster.remove({
-            name: chatName,
+            name: data.name,
             start: false
         });
     }
