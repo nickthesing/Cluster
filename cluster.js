@@ -3,24 +3,28 @@ Chat    = new Mongo.Collection('chat');
 
 if ( Meteor.isClient ) {
 
-    Router.configure({
-  layoutTemplate: 'home',
-
-  template: 'home'
-
-});
 
     Router.route('/', function () {
       // render the Home template with a custom data context
       this.render('home', {});
     });
 
-    Router.route('/chat/:_name', function() {
-        this.render('chat', {
-            data: {name: 'test'}
-          });
+    Router.route('/chat', {
+        name: 'chat',
+        path: '/chat/:_name',
 
-        console.log(this.params);
+        data: function () {
+            return Cluster.findOne({name: this.params._name});
+        },
+
+        action: function () {
+            this.render();
+        }
+    });
+
+    Router.plugin('dataNotFound', {notFoundTemplate: '/home'});
+    Router.map(function () {
+        this.route('notFound', { path: '*' });
     });
 
     Accounts.ui.config({
@@ -28,7 +32,7 @@ if ( Meteor.isClient ) {
     });
 
     // Body events
-    Template.body.events({
+    Template.home.events({
         "submit .js-create-chat": function(event) {
             var name = event.target.text.value;
 
@@ -38,6 +42,7 @@ if ( Meteor.isClient ) {
                 return false;
             }
 
+            // call method addchat
             Meteor.call('addChat', name);
 
             // remove value from input
@@ -47,7 +52,7 @@ if ( Meteor.isClient ) {
         }
     });
 
-    Template.body.helpers({
+    Template.home.helpers({
         hasError: function() {
             return Session.get('hasError');
         }
@@ -57,8 +62,6 @@ if ( Meteor.isClient ) {
 // Meteor Methods
 Meteor.methods({
     "addChat": function(name) {
-        check(name, String);
-
         // Check if user is logged in
         if ( ! Meteor.userId() ) {
             throw new Meteor.error("not-authorized");
@@ -70,11 +73,5 @@ Meteor.methods({
             owner: Meteor.userId(),
             username: Meteor.user().username
         });
-
-        console.log('Inserted:', name);
-
-    },
-    "getChat": function(name) {
-        return Cluster.findOne({name: name});
     }
 });
