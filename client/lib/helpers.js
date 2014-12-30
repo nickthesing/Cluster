@@ -10,3 +10,9 @@ if ( Meteor.isClient ) {
         }
     });
 }
+
+callFn = function(fn, data) {
+    if ( fn.slice(1) === 'clear' ) {
+        Meteor.call('clearChat', data);
+    }
+};
