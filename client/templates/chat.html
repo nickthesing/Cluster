@@ -1,23 +1,31 @@
-
 <template name="chatLayout">
     <div class="container">
-
-
         {{> yield}}
-
-
     </div>
 </template>
 
+<template name="chatLoading">
+    <h1>Loading chat...</h1>
+</template>
+
+<template name="chatNotFound">
+    <h1>Oops. Chat not found</h1>
+</template>
 
 <template name="chatNotSpecified">
+    <h1>No name specified</h1>
+</template>
 
-            <h1>No name specified</h1>
-
+<template name="chatLoaded">
+    {{#if name}}
+        {{> chat}}
+    {{else}}
+        {{> chatNotFound}}
+    {{/if}}
 </template>
 
 <template name="chat">
-    <h1>Chat: {{name}}</h1>
+    <h1>Chat: [{{name}}]</h1>
 
     <div class="cluster-chat">
     <ul>
@@ -37,16 +45,15 @@
 
 <template name="line">
     <li>
-    {{#if start }}
+    {{#if start}}
         <p class="first-line">
             Chat created by {{username}} on {{parseDate createdAt}}
         </p>
-    {{ else }}
+    {{else}}
         <p>
             <span class="line-author">{{username}}</span> - {{text}}
             <span class="line-date">{{parseDate createdAt}}</span>
         </p>
-    {{ /if }}
-
+    {{/if}}
     </li>
 </template>
