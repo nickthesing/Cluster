@@ -13,17 +13,12 @@ if ( Meteor.isClient ) {
             var name = event.target.text.value;
 
             // check for empty input eg. no name
-            if ( name === '' ) {
+            if ( name === '' || Cluster.findOne({name: name}) ) {
                 Session.set("hasError", true);
                 return false;
             }
 
             // call method addchat
-            if ( Meteor.call("getChat", name) ) {
-                Session.set('hasError', true);
-                return false;
-            }
-
             Meteor.call('addChat', name);
 
             // remove value from input
@@ -43,8 +38,6 @@ if ( Meteor.isClient ) {
 // Meteor Methods
 Meteor.methods({
     "addChat": function(name) {
-        check(name, String);
-
         // Check if user is logged in
         if ( ! Meteor.userId() ) {
             throw new Meteor.error("not-authorized");
@@ -56,11 +49,5 @@ Meteor.methods({
             owner: Meteor.userId(),
             username: Meteor.user().username
         });
-
-        console.log('Inserted:', name);
-
-    },
-    "getChat": function(name) {
-        return Cluster.findOne({name: name});
     }
 });

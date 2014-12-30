@@ -10,3 +10,4 @@ insecure
 mrt:normalize.css
 accounts-ui
 accounts-password
+iron:router
