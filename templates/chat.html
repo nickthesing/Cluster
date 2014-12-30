@@ -2,7 +2,11 @@
 
     <div class="container">
         <div class="cluster-chat">
+        {{#if name}}
             <h1>Cluster chat: {{name}}</h1>
+        {{else}}
+            <h1>The chat was not found. Try a different one.</h1>
+        {{/if}}
         </div>
     </div>
 

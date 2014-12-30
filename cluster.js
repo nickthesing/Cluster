@@ -27,8 +27,6 @@ if ( Meteor.isClient ) {
         }
     });
 
-    Router.plugin('dataNotFound', {notFoundTemplate: '/chatNotFound'});
-
     // Body events
     Template.home.events({
         "submit .js-create-chat": function(event) {
