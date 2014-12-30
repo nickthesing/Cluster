@@ -19,15 +19,30 @@ Router.route('/chat/:_name', {
 
 if ( Meteor.isClient ) {
 
+    Template.registerHelper('parseDate', function(date) {
+        return moment(date).format('HH:MM:SS');
+    });
+
   ChatController = RouteController.extend({
     layoutTemplate: 'chatLayout',
 
     data: function() {
-        var d = Cluster.findOne({name: this.params._name});
+        var d = Cluster.find({name: this.params._name});
+
+        if ( ! d ) return;
+
+        var name = d.fetch();
+
+        var data = {
+            name: ( name[0] ) ? '['+name[0].name+']' : '',
+            lines: d
+        }
+
+        return data;
     },
 
     show: function () {
-      this.render('chat');
+        this.render('chat');
     },
 
     notSpecified: function () {
@@ -57,6 +72,7 @@ if ( Meteor.isClient ) {
             // remove value from input
             event.target.text.value = '';
             Session.set("hasError", false);
+            Router.go('/chat/'+name);
             return false;
         }
     });
@@ -80,7 +96,9 @@ Meteor.methods({
             name: name,
             createdAt: new Date(),
             owner: Meteor.userId(),
-            username: Meteor.user().username
+            username: Meteor.user().username,
+            start: true,
+            text: ''
         });
     }
 });
