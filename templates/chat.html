@@ -6,10 +6,9 @@
     </div>
 </template>
 
-
-<template name="chat">
+<template name="chatLoaded">
     {{#if name}}
-        <h1>Cluster chat: {{name}}</h1>
+        {{> chat}}
     {{else}}
         {{> chatNotFound}}
     {{/if}}
@@ -25,4 +24,27 @@
 
 <template name="chatNotSpecified">
     <h1>No name specified</h1>
+</template>
+
+<template name="chat">
+    <h1>Chat: [{{name}}]</h1>
+
+    <div class="cluster-chat">
+    <ul>
+      {{#each lines}}
+        {{> line}}
+      {{/each}}
+    </ul>
+    </div>
+</template>
+
+<template name="line">
+    <li>
+    {{#if start }}
+        <p class="first-line">
+            Chat created by {{username}} on {{parseDate createdAt}}
+        </p>
+    {{ else }}
+    {{ /if }}
+    </li>
 </template>

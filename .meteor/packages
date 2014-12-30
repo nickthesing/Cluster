@@ -11,3 +11,4 @@ mrt:normalize.css
 accounts-ui
 accounts-password
 iron:router
+mrt:moment

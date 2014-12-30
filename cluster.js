@@ -26,18 +26,34 @@ if ( Meteor.isClient ) {
         },
 
         data: function() {
-            return Cluster.findOne({name: this.params._name});
+            var d = Cluster.find({name: this.params._name});
+            console.log(d);
+
+            if ( ! d ) return;
+
+            var name = d.fetch();
+
+            var data = {
+                name: ( name[0] ) ? name[0].name : undefined,
+                lines: d
+            }
+
+            return data;
         },
 
         chat: function () {
             if (this.ready()) {
-                this.render('chat');
+                this.render('chatLoaded');
             }
         },
 
         notSpecified: function () {
           this.render('chatNotSpecified');
         }
+    });
+
+    Template.registerHelper('parseDate', function(date) {
+        return moment(date).format('HH:MM:SS');
     });
 
     Accounts.ui.config({
@@ -61,6 +77,7 @@ if ( Meteor.isClient ) {
             // remove value from input
             event.target.text.value = '';
             Session.set("hasError", false);
+            Router.go('/chat/'+name);
             return false;
         }
     });
@@ -90,7 +107,9 @@ Meteor.methods({
             name: name,
             createdAt: new Date(),
             owner: Meteor.userId(),
-            username: Meteor.user().username
+            username: Meteor.user().username,
+            start: true,
+            text: ''
         });
     }
 });
