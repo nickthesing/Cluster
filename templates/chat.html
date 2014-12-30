@@ -36,15 +36,26 @@
       {{/each}}
     </ul>
     </div>
+
+    <div class="add-line">
+        <form class="new-chatline js-create-line">
+          <input type="text" name="text" placeholder="..." />
+          <button type="submit" class="btn btn-secondary">Enter</button>
+        </form>
+    </div>
 </template>
 
 <template name="line">
     <li>
-    {{#if start }}
+    {{#if start}}
         <p class="first-line">
             Chat created by {{username}} on {{parseDate createdAt}}
         </p>
-    {{ else }}
-    {{ /if }}
+    {{else}}
+        <p>
+            {{text}}
+            <span>{{parseDate createdAt}}</span>
+        </p>
+    {{/if}}
     </li>
 </template>

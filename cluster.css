@@ -1,3 +1,33 @@
+@font-face {
+    font-family: 'icomoon';
+    src:url('fonts/icomoon.eot?l53ny5');
+    src:url('fonts/icomoon.eot?#iefixl53ny5') format('embedded-opentype'),
+        url('fonts/icomoon.woff?l53ny5') format('woff'),
+        url('fonts/icomoon.ttf?l53ny5') format('truetype'),
+        url('fonts/icomoon.svg?l53ny5#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-right:before {
+    content: "\e600";
+}
+
+
 body {
     font-family: 'Lato', sans-serif;
 }
@@ -26,8 +56,12 @@ form {
     padding: 15px 22px;
 }
 
-.btn-primary:hover {
+.btn:hover {
     background-color: #f9f9f9;
+}
+
+.btn-secondary {
+    padding: 15px 22px;
 }
 
 .container {
@@ -55,6 +89,7 @@ input[type="text"] {
     border: 2px solid #d3d3d3;
     padding: 40px 10px;
     font-weight: 300;
+    margin: 0 0 10px 0;
 }
 
 .cluster-chat ul {
@@ -67,13 +102,16 @@ input[type="text"] {
     border-bottom: 1px solid #eee;
     padding: 5px 0 5px 20px;
     position: relative;
+    line-height: 20px;
 }
 
 .cluster-chat li:before {
+    color: #aaa;
     left: 0;
     position: absolute;
     font-family: 'icomoon';
     content: "\e600";
+    font-size: 14px;
 }
 
 .cluster-chat p {
@@ -82,4 +120,12 @@ input[type="text"] {
 
 .cluster-chat p.first-line {
     color: #aaa;
+}
+
+.new-chatline {
+
+}
+
+.new-chatline input[type="text"] {
+    width: 470px;
 }

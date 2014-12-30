@@ -38,6 +38,10 @@ if ( Meteor.isClient ) {
                 lines: d
             }
 
+            if ( name[0] ) {
+                Session.set('chatName', name[0].name);
+            }
+
             return data;
         },
 
@@ -87,6 +91,19 @@ if ( Meteor.isClient ) {
             return Session.get('hasError');
         }
     });
+
+    Template.chat.events({
+        "submit .js-create-line": function(event) {
+            var opt = {
+                text: event.target.text.value,
+                name: Session.get('chatName')
+            }
+
+            Meteor.call('addLine', opt);
+
+            return false;
+        }
+    });
 }
 
 if (Meteor.isServer) {
@@ -110,6 +127,20 @@ Meteor.methods({
             username: Meteor.user().username,
             start: true,
             text: ''
+        });
+    },
+    "addLine": function(opt) {
+        if ( ! Meteor.userId() ) {
+            throw new Meteor.error("not-authorized");
+        }
+
+        Cluster.insert({
+            name: opt.name,
+            createdAt: new Date(),
+            owner: Meteor.userId(),
+            username: Meteor.user().username,
+            start: false,
+            text: opt.text
         });
     }
 });
