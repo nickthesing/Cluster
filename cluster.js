@@ -1,37 +1,41 @@
 Cluster = new Mongo.Collection("cluster");
 Chat    = new Mongo.Collection('chat');
 
-if ( Meteor.isClient ) {
-
+// Default Routes
 Router.configure({
   layoutTemplate: 'home',
-
   template: 'home'
 });
 
-    // Router.route('/', function () {
-    //   // render the Home template with a custom data context
-    //   this.render('home', {});
-    // });
+Router.route('/chat', {
+    controller: 'ChatController',
+    action: 'notSpecified'
+});
 
-    Router.route('/chat', {
-        name: 'chat',
-        path: '/chat/:_name',
-        layoutTemplate: 'chat',
+Router.route('/chat/:_name', {
+    controller: 'ChatController',
+    action: 'show'
+})
 
-        data: function () {
-            return Cluster.findOne({name: this.params._name});
-        },
+if ( Meteor.isClient ) {
 
-        action: function () {
-            this.render();
-        }
-    });
+  ChatController = RouteController.extend({
+    layoutTemplate: 'chatLayout',
 
-    Router.plugin('dataNotFound', {notFoundTemplate: '/chatNotFound'});
-    Router.map(function () {
-        this.route('notFound', { path: '*' });
-    });
+    data: function() {
+        var d = Cluster.findOne({name: this.params._name});
+    },
+
+    show: function () {
+      this.render('chat');
+    },
+
+    notSpecified: function () {
+      this.render('chatNotSpecified');
+    }
+  });
+
+
 
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
