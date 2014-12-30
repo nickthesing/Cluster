@@ -3,15 +3,21 @@ Chat    = new Mongo.Collection('chat');
 
 if ( Meteor.isClient ) {
 
+Router.configure({
+  layoutTemplate: 'home',
 
-    Router.route('/', function () {
-      // render the Home template with a custom data context
-      this.render('home', {});
-    });
+  template: 'home'
+});
+
+    // Router.route('/', function () {
+    //   // render the Home template with a custom data context
+    //   this.render('home', {});
+    // });
 
     Router.route('/chat', {
         name: 'chat',
         path: '/chat/:_name',
+        layoutTemplate: 'chat',
 
         data: function () {
             return Cluster.findOne({name: this.params._name});
