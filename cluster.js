@@ -3,22 +3,24 @@ Chat    = new Mongo.Collection('chat');
 
 if ( Meteor.isClient ) {
 
+    Router.configure({
+  layoutTemplate: 'home',
+
+  template: 'home'
+
+});
+
     Router.route('/', function () {
       // render the Home template with a custom data context
       this.render('home', {});
     });
 
     Router.route('/chat/:_name', function() {
-        this.layout('chat', {
-            data: {
-                name: this.params._name
-            }
-        });
+        this.render('chat', {
+            data: {name: 'test'}
+          });
 
         console.log(this.params);
-
-        // will just get the data context from layout
-        this.render('chat');
     });
 
     Accounts.ui.config({
