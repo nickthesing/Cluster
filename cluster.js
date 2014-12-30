@@ -91,7 +91,7 @@ if ( Meteor.isClient ) {
         if ( fn.slice(1) === 'clear' ) {
             Meteor.call('clearChat', data);
         }
-    },
+    };
 
     Template.chat.events({
         "submit .js-create-line": function(event) {
