@@ -3,8 +3,11 @@ Chat    = new Mongo.Collection('chat');
 
 if ( Meteor.isClient ) {
 
+    Accounts.ui.config({
+        passwordSignupFields: "USERNAME_ONLY"
+    });
+
     Router.route('/', function () {
-      // render the Home template with a custom data context
       this.render('home', {});
     });
 
@@ -22,13 +25,6 @@ if ( Meteor.isClient ) {
     });
 
     Router.plugin('dataNotFound', {notFoundTemplate: '/chatNotFound'});
-    Router.map(function () {
-        this.route('notFound', { path: '*' });
-    });
-
-    Accounts.ui.config({
-        passwordSignupFields: "USERNAME_ONLY"
-    });
 
     // Body events
     Template.home.events({
