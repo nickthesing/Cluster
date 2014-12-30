@@ -26,8 +26,12 @@ if ( Meteor.isClient ) {
         "submit .js-create-line": function(event) {
             event.preventDefault();
 
-            text = event.target.text.value,
+            var text = event.target.text.value,
             fns = ['clear'];
+
+            if ( text === '' ) {
+                return false;
+            }
 
             var opt = {
                 text: text,
@@ -35,15 +39,13 @@ if ( Meteor.isClient ) {
             }
 
             if ( text.indexOf('!') === 0 && fns.indexOf(text.slice(1)) > -1 ) {
-
                 callFn(text,opt);
-
-                event.target.text.value = '';
-                return;
+            } else {
+                Meteor.call('addLine', opt);
             }
 
-            Meteor.call('addLine', opt);
             event.target.text.value = '';
+            return;
         }
     });
 }
