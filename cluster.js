@@ -3,6 +3,24 @@ Chat    = new Mongo.Collection('chat');
 
 if ( Meteor.isClient ) {
 
+    Router.route('/', function () {
+      // render the Home template with a custom data context
+      this.render('home', {});
+    });
+
+    Router.route('/chat/:_name', function() {
+        this.layout('chat', {
+            data: {
+                name: this.params._name
+            }
+        });
+
+        console.log(this.params);
+
+        // will just get the data context from layout
+        this.render('chat');
+    });
+
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
     });
@@ -13,14 +31,8 @@ if ( Meteor.isClient ) {
             var name = event.target.text.value;
 
             // check for empty input eg. no name
-            if ( name === '' ) {
+            if ( name === '' || Cluster.findOne({name: name}) ) {
                 Session.set("hasError", true);
-                return false;
-            }
-
-            // call method addchat
-            if ( Meteor.call("getChat", name) ) {
-                Session.set('hasError', true);
                 return false;
             }
 
