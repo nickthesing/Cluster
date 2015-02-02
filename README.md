@@ -1,9 +1,11 @@
 Cluster
 =======
 
-A Meteor Chat Application
+A Meteor Chat Application ( Work in progress)
 
 Authors: Nick Thesing & Matthijs Molhoek
+
+Feature request? Lets us know!
 
 <h4> Features </h4>
 
