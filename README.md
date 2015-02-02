@@ -1,7 +1,7 @@
 Cluster
 =======
 
-A Meteor Chat Application ( Work in progress)
+A Meteor Chat Application (work in progress)
 
 Authors: Nick Thesing & Matthijs Molhoek
 
